@@ -13,6 +13,11 @@ const FooterContainer = styled(Container)`
     transform: translate(-50%, -50%) scale(1, -1);
     box-shadow: 0 1rem 1rem 0 var(--color-shadow);
   }
+  & > small {
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
 `
 
 export default function Footer() {

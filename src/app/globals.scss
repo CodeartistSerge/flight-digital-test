@@ -1,0 +1,279 @@
+@use "sass:map";
+
+/* NOTE: duplicate them in utils/media-query.ts for styled components */
+$breakpoints: (
+	sm: 40rem,
+	md: 48rem,
+	lg: 64rem,
+	xl: 80rem,
+	xxl: 96rem,
+);
+
+@mixin bp($size) {
+	$value: map.get($breakpoints, $size);
+	@if $value {
+		@media (width >= #{$value}) {
+			@content;
+		}
+	} @else {
+		@warn "Breakpoint `#{$size}` is not defined";
+	}
+}
+
+:root {
+	--color-accent: #5AAE44; /* Green */
+	--color-primary: #FFB347; /* --color-highlight */
+	--color-highlight: #FFB347;  /* Warm orange-yellow for buttons and key accents */
+	--color-canvas: #F9F6E2; /* Pastel Yellow */
+	--color-text: #3E2F1B; /* Brown */
+	--color-shadow: #3E2F1B44; /* Brown */
+	--color-secondary: #A8D0E6; /* Light sky-blue touch to bring freshness */
+
+	--color-white: #FEFEFE;
+	--font-scale: 1; /* For the sake of "Make it bigger / smaller */
+}
+
+html,
+body {
+  font-size: calc(10px * var(--font-scale));
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+body {
+  color: var(--color-text);
+  background: var(--color-canvas);
+  font-family: "Raleway", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+	font-size: calc(10px * var(--font-scale));
+	h1, h2, h3, h4, h5, h6 {
+		font-family:'Poppins',sans-serif;
+		> * {
+			font-size: inherit;
+		}
+		&:not(:last-child) {
+			/* margin-bottom: 2.4rem; */
+			margin-bottom: 0.4em;
+		}
+	}
+	h1, h2, h5 {
+		text-transform: uppercase;
+		letter-spacing: -0.025em;
+	}
+	h2, h3, h4, h5, h6, p {
+		&:first-child {
+			margin-top: -0.25em;
+		}
+	}
+	* {
+		font-size: 1.6rem;
+		color: var(--color-text);
+		@include bp(xl) {
+			font-size: 2rem;
+		}
+	}
+	h1, h2 {
+		font-weight: bold;
+		font-size: 4rem;
+		line-height: 1em;
+		position: relative;
+		padding-top: 1.5rem;
+		padding-bottom: 1.5rem;
+		@include bp(xl) {
+			font-size: 6rem;
+			padding-top: 2rem;
+			padding-bottom: 2rem;
+		}
+	}
+	h2 {
+		font-weight: bold;
+		font-size: 3.2rem;
+		@include bp(xl) {
+			font-size: 4.8rem;
+		}
+	}
+	h3 {
+		font-weight: 600;
+		font-size: 2.56re;
+		@include bp(xl) {
+			font-size: 3.84rem;
+		}
+	}
+	h4 {
+		font-weight: 600;
+		font-size: 2.048rem;
+		position: relative;
+		padding-top: 0.5rem;
+		padding-bottom: 0.5rem;
+		text-transform: uppercase;
+		@include bp(xl) {
+			font-size: 3.072rem;
+		}
+		&:before,
+		&:after {
+			content: '';
+			background: var(--color-text);
+			display: block;
+			position: absolute;
+			width: 8rem;
+			height: 3px;
+			top: 0;
+			left: 0;
+			width: 4rem;
+			height: 2px;
+		}
+		&::after {
+			width: 4rem;
+			top:auto;
+			bottom: 0;
+			width: 2rem;
+		}
+		@media (width >= 80rem) {
+			&:before,
+			&:after {
+				width: 8rem;
+				height: 3px;
+			}
+			&:after {
+				width: 4rem;
+			}
+		}
+		&.text-center {
+			&:before,
+			&:after {
+				left: 50%;
+				transform: translate(-50%, 0);
+			}
+		}
+	}
+	h5 {
+		font-weight: 500;
+		font-size: 1.4384rem;
+		padding-top: 1rem;
+		padding-bottom: 1rem;
+		position: relative;
+		@include bp(xl) {
+			font-size: 2.4576rem;
+		}
+		&:before,
+		&:after {
+			content: '';
+			background-color: var(--color-text);
+			display: block;
+			position: absolute;
+			top: 0;
+			left: 50%;
+			transform: translate(-50%, 0);
+			width: 4rem;
+			height: 2px;
+		}
+		&::after {
+			top:auto;
+			bottom: 0;
+			width: 2rem;
+		}
+		@media (width >= 80rem) {
+			&:before,
+			&:after {
+				width: 8rem;
+				height: 3px;
+			}
+			&:after {
+				width: 3rem;
+			}
+		}
+	}
+	h6 {
+		font-weight: 500;
+		font-size: 1.31072rem;
+		@include bp(xl) {
+			font-size: 1.96608rem;
+		}
+	}
+	p {
+		font-size: 1.65rem;
+		line-height: 1.6em;
+		@include bp(xl) {
+			font-size: 2rem;
+		}
+		&:not(:last-child) {
+			margin-bottom: 0.5em;
+		}
+	}
+	small {
+		font-size: 1.25rem;
+		& > * {
+			font-size: inherit !important;
+		}
+		@include bp(xl) {
+			font-size: 1.6rem;
+		}
+		&:not(:last-child) {
+			margin-bottom: 1.25rem;
+			@include bp(xl) {
+				margin-bottom: 1.6rem;
+			}
+		}
+	}
+	a {
+		text-decoration: underline;
+		color: var(--color-highlight);
+		filter: brightness(90%);
+	}
+	ul {
+
+	}
+	ol {
+
+	}
+	li {
+
+	}
+	blockquote {
+
+	}
+	pre {
+
+	}
+	code {
+
+	}
+	hr {
+
+	}
+	form {
+		input {
+			font-size: 1.65rem;
+			line-height: 1.6em;
+			height: 5rem;
+			margin-left: -0.7rem;
+			margin-right: -0.7rem;
+			width: calc(100% + 1.4rem);
+			@include bp(xl) {
+				font-size: 2rem;
+			}
+		}
+		label {
+			font-size: 1.35rem;
+			line-height: 1.6em;
+			@include bp(xl) {
+				font-size: 1.65rem;
+			}
+		}
+	}
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}

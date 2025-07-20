@@ -14,6 +14,7 @@
     "p-timeout": "^6.1.4",
     "react": "19.1.0",
     "react-dom": "19.1.0",
+    "sass": "^1.89.2",
     "styled-components": "^6.1.19"
   },
   "devDependencies": {
