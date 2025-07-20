@@ -13,8 +13,8 @@ const Section = styled.section`
   & > * {
     position: relative;
     z-index: 3;
-    display: flex;
-    flex-wrap: nowrap;
+    /* display: flex;
+    flex-wrap: nowrap; */
   }
   ${media.md} {
     padding: 4rem 8rem;

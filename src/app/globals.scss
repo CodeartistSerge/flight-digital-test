@@ -30,6 +30,7 @@ $breakpoints: (
 	--color-secondary: #A8D0E6; /* Light sky-blue touch to bring freshness */
 
 	--color-white: #FEFEFE;
+	--color-grey: #CCCCCC;
 	--font-scale: 1; /* For the sake of "Make it bigger / smaller */
 }
 
@@ -50,6 +51,20 @@ body {
 
 html {
 	font-size: calc(10px * var(--font-scale));
+	.globalPreloader {
+		display: block;
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100vw;
+		height: 100vh;
+		background: #e3350d;
+		z-index: 100;
+		background-image: url('/placeholder.svg');
+		background-size: 10vw auto;
+		background-position: center center;
+		background-repeat: no-repeat;
+	}
 	h1, h2, h3, h4, h5, h6 {
 		font-family:'Poppins',sans-serif;
 		> * {
@@ -61,7 +76,8 @@ html {
 		}
 	}
 	h1, h2, h5 {
-		text-transform: uppercase;
+		// text-transform: uppercase;
+		text-transform: capitalize;
 		letter-spacing: -0.025em;
 	}
 	h2, h3, h4, h5, h6, p {
@@ -113,35 +129,6 @@ html {
 		@include bp(xl) {
 			font-size: 3.072rem;
 		}
-		&:before,
-		&:after {
-			content: '';
-			background: var(--color-text);
-			display: block;
-			position: absolute;
-			width: 8rem;
-			height: 3px;
-			top: 0;
-			left: 0;
-			width: 4rem;
-			height: 2px;
-		}
-		&::after {
-			width: 4rem;
-			top:auto;
-			bottom: 0;
-			width: 2rem;
-		}
-		@media (width >= 80rem) {
-			&:before,
-			&:after {
-				width: 8rem;
-				height: 3px;
-			}
-			&:after {
-				width: 4rem;
-			}
-		}
 		&.text-center {
 			&:before,
 			&:after {
@@ -158,33 +145,6 @@ html {
 		position: relative;
 		@include bp(xl) {
 			font-size: 2.4576rem;
-		}
-		&:before,
-		&:after {
-			content: '';
-			background-color: var(--color-text);
-			display: block;
-			position: absolute;
-			top: 0;
-			left: 50%;
-			transform: translate(-50%, 0);
-			width: 4rem;
-			height: 2px;
-		}
-		&::after {
-			top:auto;
-			bottom: 0;
-			width: 2rem;
-		}
-		@media (width >= 80rem) {
-			&:before,
-			&:after {
-				width: 8rem;
-				height: 3px;
-			}
-			&:after {
-				width: 3rem;
-			}
 		}
 	}
 	h6 {
@@ -276,4 +236,79 @@ html {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+/* Pokemon type pills colors */
+
+.background-color-bug {
+  background-color:#729f3f !important;
+  color:#fff
+}
+.background-color-dark {
+  background-color:#707070 !important;
+  color:#fff
+}
+.background-color-dragon {
+  background-color:#53a4cf !important;
+  color:#fff
+}
+.background-color-electric {
+  background-color:#eed535 !important;
+  color:#212121
+}
+.background-color-fairy {
+  background-color:#fdb9e9 !important;
+  color:#212121
+}
+.background-color-fighting {
+  background-color:#d56723 !important;
+  color:#fff
+}
+.background-color-fire {
+  background-color:#fd7d24 !important;
+  color:#fff
+}
+.background-color-flying {
+  background-color:#3dc7ef !important;
+  color:#212121
+}
+.background-color-ghost {
+  background-color:#7b62a3 !important;
+  color:#fff
+}
+.background-color-grass {
+  background-color:#9bcc50 !important;
+  color:#212121
+}
+.background-color-ground {
+  background-color:#f7de3f !important;
+  color:#212121
+}
+.background-color-ice {
+  background-color:#51c4e7 !important;
+  color:#212121
+}
+.background-color-normal {
+  background-color:#a4acaf !important;
+  color:#212121
+}
+.background-color-poison {
+  background-color:#b97fc9 !important;
+  color:#fff
+}
+.background-color-psychic {
+  background-color:#f366b9 !important;
+  color:#fff
+}
+.background-color-rock {
+  background-color:#a38c21 !important;
+  color:#fff
+}
+.background-color-steel {
+  background-color:#9eb7b8 !important;
+  color:#212121
+}
+.background-color-water {
+  background-color:#4592c4 !important;
+  color:#fff
 }

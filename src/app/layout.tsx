@@ -21,8 +21,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${ralewayFont.variable}`}>
+    <html lang="en" className={ralewayFont.variable}>
+      <body>
         <Header/>
         {children}
 			  <Footer/>

@@ -27,3 +27,13 @@ export interface PokemonResource {
     stat: { name: string; url: string };
   }[];
 }
+
+export interface PokemonResourcePruned {
+  id: number;
+  name: string;
+  image?: string;
+  types: {
+    slot: number;
+    type: { name: string; url: string };
+  }[];
+}
