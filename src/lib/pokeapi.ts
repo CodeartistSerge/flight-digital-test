@@ -1,4 +1,4 @@
-import type { PokemonListResponse, PokemonResource } from "@/types/pokeapi";
+import type { PokemonListResponse, PokemonResource } from "@/lib/types/pokeapi";
 import pQueue from "p-queue";
 import pTimeout from "p-timeout";
 
