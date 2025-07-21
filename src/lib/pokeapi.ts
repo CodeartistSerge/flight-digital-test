@@ -1,14 +1,14 @@
 import type { PokemonListResponse, PokemonResource, PokemonResourcePruned } from "@/lib/types/pokeapi";
 
-const API_ROOT = "https://pokeapi.co/api/v2";
+export const API_ROOT = "https://pokeapi.co/api/v2";
 
 // This should load the whole thing in ~3 secods
 // Being fairly generous to the API, not bombarding it close to DDOS rates :)
 
-async function fetchJSON<T>(url: string):Promise<T> {
+export async function fetchJSON<T>(url: string):Promise<T> {
 
   const data = await fetch(url, {
-        next: { revalidate: 20 } // in 24hrs / 86400s
+        next: { revalidate: 86400 } // in 24hrs
       }).then(async (res) => {
         if (!res.ok) {
           throw new Error(`ERROR: ${res.status} / ${url}`);

@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { getAllPokemon } from "@/lib/pokeapi";
-import { PokemonResource, PokemonResourcePruned } from "@/lib/types/pokeapi";
+import { PokemonResourcePruned } from "@/lib/types/pokeapi";
 import fs from "fs/promises";
 import path from "path";
 
@@ -49,7 +49,7 @@ export async function GET() {
       source: "pokeapi",
       data: freshData,
     });
-  } catch (error) {
+  } catch {
     return NextResponse.json(
       {
         error: "Failed to fetch",

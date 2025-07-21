@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { PokemonResource } from "@/lib/types/pokeapi"
 import Link from "next/link"
 import Image from "next/image"
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import Preloader from '../global/preloader';
 import { Grommet, Box, Select, TextInput } from 'grommet';
 import { useDebouncer } from '@/lib/utils/debouncer';
@@ -39,8 +39,11 @@ const Button = styled.button`
 const Ul = styled.ul`
   display: grid;
   width: 100%;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   grid-gap: 2rem;
+  ${media.lg} {
+  grid-template-columns: repeat(4, 1fr);
+  }
 `;
 
 const Card = styled.li`
@@ -157,7 +160,8 @@ export default function PokemonGrid({ pokemons }: Props) {
     setSearchVal(event.suggestion);
     setSuggestions(allSuggestions.filter(v => v === event.suggestion))
   };
-  const filteredPokemons = pokemons
+  // const filteredPokemons = pokemons
+  const filteredPokemons = useMemo(() => pokemons
     .filter(v => suggestions.includes(v.name))
     .sort((a, b) => {
       switch (sortVal.value) {
@@ -175,7 +179,10 @@ export default function PokemonGrid({ pokemons }: Props) {
           return a.id - b.id;
           break;
       }
-    });
+    }), [
+      suggestions,
+      sortVal
+    ]);
   const onLoadMore = () => {
     if ((curPage * pageSize) < filteredPokemons.length) {
       setCurPage(curPage + 1);
@@ -229,7 +236,7 @@ export default function PokemonGrid({ pokemons }: Props) {
                   >{vv.type.name}</TypePill>
                 )))(v.types)}
               </PillWrap>
-              <CardLink href={`/pokemon/${v.id}`}></CardLink>
+              <CardLink href={`/pokemon/${v.name}`}></CardLink>
             </Card>
           )))(filteredPokemons.slice(0, curPage * pageSize))}
         </Ul>

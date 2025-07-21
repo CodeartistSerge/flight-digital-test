@@ -5,6 +5,18 @@ export interface PokemonListResponse {
   }[];
 }
 
+export interface PokemonSpecies {
+  id: number;
+  name: string;
+  has_gender_differences: boolean;
+  flavor_text_entries: {
+    flavor_text: string;
+  }[];
+  form_descriptions: {
+    description: string
+  }[];
+}
+
 export interface PokemonResource {
   id: number;
   name: string;
@@ -18,6 +30,9 @@ export interface PokemonResource {
       };
     };
   };
+  species: {
+    url: string;
+  }
   types: {
     slot: number;
     type: { name: string; url: string };
