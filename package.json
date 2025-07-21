@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "grommet": "^2.47.0",
     "next": "15.4.2",
     "p-queue": "^8.1.0",
     "p-timeout": "^6.1.4",

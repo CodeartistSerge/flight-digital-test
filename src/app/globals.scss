@@ -21,13 +21,13 @@ $breakpoints: (
 }
 
 :root {
-	--color-accent: #5AAE44; /* Green */
-	--color-primary: #FFB347; /* --color-highlight */
-	--color-highlight: #FFB347;  /* Warm orange-yellow for buttons and key accents */
-	--color-canvas: #F9F6E2; /* Pastel Yellow */
-	--color-text: #3E2F1B; /* Brown */
-	--color-shadow: #3E2F1B44; /* Brown */
-	--color-secondary: #A8D0E6; /* Light sky-blue touch to bring freshness */
+	--color-accent: #e3350d;
+	--color-primary: #fd7d24;
+	--color-highlight: #fd7d24;
+	--color-canvas: #F9F6E2;
+	--color-text: #3E2F1B;
+	--color-shadow: #3E2F1B44;
+	--color-secondary: #A8D0E6;
 
 	--color-white: #FEFEFE;
 	--color-grey: #CCCCCC;
@@ -58,7 +58,7 @@ html {
 		left: 0;
 		width: 100vw;
 		height: 100vh;
-		background: #e3350d;
+		background: var(--color-accent);
 		z-index: 100;
 		background-image: url('/placeholder.svg');
 		background-size: 10vw auto;
@@ -312,3 +312,41 @@ a {
   background-color:#4592c4 !important;
   color:#fff
 }
+
+
+    .my-listbox-button {
+      /* Basic button styles */
+      background-color: #f0f0f0;
+      border: 1px solid #ccc;
+      padding: 8px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .my-listbox-options {
+      /* Options container styles */
+      list-style: none;
+      padding: 0;
+      margin: 4px 0;
+      border: 1px solid #eee;
+      border-radius: 4px;
+      background-color: #fff;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .my-listbox-option {
+      /* Individual option styles */
+      padding: 8px 12px;
+      cursor: pointer;
+    }
+
+    .my-listbox-option[data-focus] {
+      /* Styles for focused option */
+      background-color: #e0e0e0;
+    }
+
+    .my-listbox-option[data-selected] {
+      /* Styles for selected option */
+      background-color: #007bff;
+      color: #fff;
+    }

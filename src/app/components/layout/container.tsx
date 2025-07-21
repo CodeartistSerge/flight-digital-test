@@ -6,6 +6,7 @@ import { media } from '@/lib/utils/media-query'
 const Section = styled.section`
   position: relative;
   display: flex;
+  flex-direction: column;
   width: 100%;
   max-width: 140rem;
   margin: 0 auto;
