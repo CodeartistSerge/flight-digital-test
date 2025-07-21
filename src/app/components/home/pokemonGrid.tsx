@@ -42,7 +42,7 @@ const Ul = styled.ul`
   grid-template-columns: repeat(2, 1fr);
   grid-gap: 2rem;
   ${media.lg} {
-  grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, 1fr);
   }
 `;
 

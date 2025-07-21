@@ -4,6 +4,7 @@ import "./globals.scss";
 
 import Footer from "@/app/components/global/footer";
 import Header from "@/app/components/global/header";
+import Spacer from "./components/global/spacer";
 
 const ralewayFont = Raleway({
   variable: "--font-raleway",
@@ -25,6 +26,7 @@ export default function RootLayout({
       <body>
         <Header/>
         {children}
+        <Spacer />
 			  <Footer/>
       </body>
     </html>

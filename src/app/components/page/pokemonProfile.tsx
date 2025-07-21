@@ -6,10 +6,14 @@ import Image from "next/image"
 import { PokemonResource, PokemonSpecies } from "@/lib/types/pokeapi"
 import { useEffect, useState } from "react"
 import Preloader from "../global/preloader"
+import { media } from "@/lib/utils/media-query"
 
 const HeadContainer = styled(Container)`
-padding-bottom: 0;
-margin-bottom: -8rem;
+  padding-bottom: 0;
+  margin-bottom: 0;
+  ${media.xl} {
+    margin-bottom: -8rem;
+  }
   & > h1 {
     text-align: center;
     background: val(--color-grey) !important;
@@ -20,27 +24,45 @@ margin-bottom: -8rem;
 
 const HCHIContainer = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: nowrap;
   gap: 4rem;
   padding: 4rem 4rem;
   border-radius: 4rem;
   background: var(--color-white);
+  ${media.md} {
+    flex-direction: row;
+  }
   & > * {
     width: 0;
     flex-grow: 0;
   }
   & > div.leftColumn {
-    width: 30rem;
+    width: 100%;
+    ${media.md} {
+      width: 30rem;
+      flex-direction: row;
+    }
     & > img {
+      max-width: 30rem;
       width: 100%;
+      margin: 0 auto;
+      ${media.md} {
+        max-width: none;
+        margin: 0;
+      }
       height: auto;
     }
   }
   & > div.rightColumn {
     flex-grow: 1;
+    width: 100%;
+    ${media.md} {
+      width: auto;
+    }
     p {
       margin-bottom: 3rem;
+      line-height: 1.7em;
     }
   }
 `
@@ -61,6 +83,7 @@ const ParametersWrap = styled.div`
       display: inline-block;
       margin: 0 0.5rem;
       text-transform: capitalize;
+      line-height: 1.7em;
     }
   }
 `
@@ -69,6 +92,15 @@ interface Props {
   data: PokemonResource,
   species: PokemonSpecies
 }
+const PokemonProfileWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  &:after {
+    content: '';
+    display: block;
+    flex-grow: 1;
+  }
+`
 
 export default function PokemonProfile({ data, species }:Props) {
   const [stylesReady, setStylesReady] = useState(false);
@@ -86,7 +118,7 @@ export default function PokemonProfile({ data, species }:Props) {
   const image = data.sprites.other["official-artwork"].front_default ?? "/placeholder.svg";
   console.log(species);
   return (
-    <>
+    <PokemonProfileWrap>
       {!stylesReady && <Preloader />}
       <HeadContainer>
         <h1>{data.name} <span>#{data.id.toString().padStart(4, '0')}</span></h1>
@@ -118,6 +150,6 @@ export default function PokemonProfile({ data, species }:Props) {
           </div>
         </HCHIContainer>
       </Container>
-    </>
+    </PokemonProfileWrap>
   )
 }
