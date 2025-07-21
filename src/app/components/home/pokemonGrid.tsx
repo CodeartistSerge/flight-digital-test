@@ -181,7 +181,8 @@ export default function PokemonGrid({ pokemons }: Props) {
       }
     }), [
       suggestions,
-      sortVal
+      sortVal,
+      pokemons
     ]);
   const onLoadMore = () => {
     if ((curPage * pageSize) < filteredPokemons.length) {
@@ -191,63 +192,60 @@ export default function PokemonGrid({ pokemons }: Props) {
     }
   }
 
-  if (!stylesReady) {
-    return (<Preloader />);
-  } else {
-    return (
-      <>
-        <Grommet>
-          <Box fill direction="row-responsive" align="center" justify="start" pad="large" gap="medium">
-            <Select
-              id="select"
-              name="select"
-              placeholder="Select"
-              value={sortVal}
-              options={sortOptions}
-              onChange={({ option }) => setSortVal(option)}
+  return (
+    <>
+      {!stylesReady && <Preloader />}
+      <Grommet>
+        <Box fill direction="row-responsive" align="center" justify="start" pad="large" gap="medium">
+          <Select
+            id="select"
+            name="select"
+            placeholder="Select"
+            value={sortVal}
+            options={sortOptions}
+            onChange={({ option }) => setSortVal(option)}
+          />
+          <TextInput
+            id="grommet-text-combobox"
+            value={searchVal}
+            onChange={onSearchChange}
+            onSuggestionSelect={onSuggestionSelect}
+            suggestions={suggestions}
+            aria-label="Search Input Text"
+            placeholder="Start typing to search..."
+          />
+        </Box>
+      </Grommet>
+      <Ul>
+        {(pokemons => pokemons.map(v => (
+          <Card key={v.id}>
+            <Img
+              src={v.image as string}
+              width={100}
+              height={100}
+              alt={`Pokemon: ${v.name}`}
             />
-            <TextInput
-              id="grommet-text-combobox"
-              value={searchVal}
-              onChange={onSearchChange}
-              onSuggestionSelect={onSuggestionSelect}
-              suggestions={suggestions}
-              aria-label="Search Input Text"
-              placeholder="Start typing to search..."
-            />
-          </Box>
-        </Grommet>
-        <Ul>
-          {(pokemons => pokemons.map(v => (
-            <Card key={v.id}>
-              <Img
-                src={v.image as string}
-                width={100}
-                height={100}
-                alt={`Pokemon: ${v.name}`}
-              />
-              <small>#{v.id.toString().padStart(4, '0')}</small>
-              <h5>{v.name}</h5>
-              <PillWrap>
-                {(t => t.map(vv => (
-                  <TypePill
-                    key={`${v.id}-${vv.type.name}`}
-                    className={`background-color-${vv.type.name}`}
-                  >{vv.type.name}</TypePill>
-                )))(v.types)}
-              </PillWrap>
-              <CardLink href={`/pokemon/${v.name}`}></CardLink>
-            </Card>
-          )))(filteredPokemons.slice(0, curPage * pageSize))}
-        </Ul>
-        {
-          (
-            filteredPokemons.length > pageSize &&
-            filteredPokemons.length > (curPage * pageSize)
-          ) &&
-          <Button onClick={onLoadMore}>Load More</Button>
-        }
-      </>
-    )
-  }
+            <small>#{v.id.toString().padStart(4, '0')}</small>
+            <h5>{v.name}</h5>
+            <PillWrap>
+              {(t => t.map(vv => (
+                <TypePill
+                  key={`${v.id}-${vv.type.name}`}
+                  className={`background-color-${vv.type.name}`}
+                >{vv.type.name}</TypePill>
+              )))(v.types)}
+            </PillWrap>
+            <CardLink href={`/pokemon/${v.name}`}></CardLink>
+          </Card>
+        )))(filteredPokemons.slice(0, curPage * pageSize))}
+      </Ul>
+      {
+        (
+          filteredPokemons.length > pageSize &&
+          filteredPokemons.length > (curPage * pageSize)
+        ) &&
+        <Button onClick={onLoadMore}>Load More</Button>
+      }
+    </>
+  )
 }
