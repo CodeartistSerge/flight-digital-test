@@ -28,6 +28,8 @@ On the larger scale, I would probably shift the sorting / searching functionalit
 ## Styles
 - Styled Components wherever possible with a little bit of SASS/SCSS sprinkled at `globals.scss`` for convenience
 - As design was not provided, nothing fancy in terms of styling, just mobile friendly, a few css hover animation. Just an inspiration from the reference websites.
+## No tests
+As it has not been mentioned in the specs. Otherwise ``Jest`` would have been the flavour of choice for me.
 
 -----
 
